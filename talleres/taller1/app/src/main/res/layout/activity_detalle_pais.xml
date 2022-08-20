@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetallePaisActivity">
+
+    <TextView
+        android:id="@+id/capital"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+
+        android:layout_marginBottom="10dp"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/nombrepais"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@id/capital"
+         />
+
+    <TextView
+        android:id="@+id/nombrepaisint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@id/nombrepais"
+         />
+
+    <TextView
+        android:id="@+id/sigla"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_below="@id/nombrepaisint"
+         />
+
+    <ImageView
+        android:id="@+id/bandera"
+        android:layout_width="match_parent"
+        android:layout_height="244dp"
+        android:layout_margin="10dp"
+        android:layout_below="@id/sigla"
+        tools:srcCompat="@tools:sample/avatars" />
+
+</RelativeLayout>
