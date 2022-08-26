@@ -10,71 +10,86 @@
     tools:context=".MainActivity">
 
 
-    <Button
-        android:id="@+id/fiboBTN"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content">
 
-        android:layout_below="@id/posicionesTXT"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:paddingTop="10dp"
-        android:text="@string/fibo" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/factoBTN"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/factoTXT"
-        android:layout_margin="10dp"
-        android:text="@string/facto" />
+            <EditText
+                android:id="@+id/posicionesTXT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-    <Button
-        android:id="@+id/paisesBTN"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/contadorfifac"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/pais" />
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
 
+                android:layout_marginBottom="10dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="Posiciones"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:textColorHint="#757575" />
 
-    <EditText
-        android:id="@+id/posicionesTXT"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+            <Button
+                android:id="@+id/fiboBTN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/fibo" />
 
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Posiciones"
-        android:inputType="number"
-        android:minHeight="48dp"
-        android:textColorHint="#757575" />
+            <Spinner
+                android:id="@+id/factoTXT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:entries="@array/numerofacto"
+                android:minHeight="48dp" />
 
-    <TextView
-        android:id="@+id/contadorfifac"
-        android:layout_below="@id/factoBTN"
-        android:layout_width="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_height="wrap_content"
-         />
+            <Button
+                android:id="@+id/factoBTN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/facto" />
 
-    <Spinner
-        android:id="@+id/factoTXT"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_below="@id/fiboBTN"
-        android:entries="@array/numerofacto"
-        android:minHeight="48dp" />
+            <TextView
+                android:id="@+id/contadorfifac"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <Button
+                android:id="@+id/paisesBTN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/pais" />
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </RelativeLayout>
