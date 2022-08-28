@@ -60,7 +60,7 @@ public class FibonacciActivity extends AppCompatActivity {
         for(int i =1;i<n;i++){
             fib.add(fib.get(i).add(fib.get(i-1)));
         }
-        for(int i =1;i<=n;i++){
+        for(int i =0;i<=n;i++){
             text = text + fib.get(i)+"\n";
         }
         return text;
