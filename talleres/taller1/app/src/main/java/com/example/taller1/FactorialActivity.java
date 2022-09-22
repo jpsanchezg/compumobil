@@ -23,7 +23,7 @@ public class FactorialActivity extends AppCompatActivity {
             if(extras == null) {
                 newString= null;
             } else {
-                newString= extras.getString("factorial");
+                newString= extras.getString("posicion");
             }
         } else {
             newString= (String) savedInstanceState.getSerializable("posicion");
