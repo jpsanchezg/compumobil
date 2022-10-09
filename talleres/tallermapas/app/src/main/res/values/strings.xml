@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">tallermapas</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="open_street_maps">Open Street Maps</string>
+    <string name="google_maps">Google maps</string>
+    <string name="bing_maps">Bing Maps</string>
+</resources>
