@@ -16,16 +16,9 @@
         android:text="@string/google_maps" />
 
     <Button
-        android:id="@+id/OpMapsBTN"
+        android:id="@+id/mapboxBTN"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/open_street_maps" />
-
-    <Button
-        android:id="@+id/BingMapsBTN"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:text="@string/bing_maps" />
+        android:text="Mapbox" />
 
 </LinearLayout>

@@ -160,7 +160,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onPause() {
         super.onPause();
+        fusedLocationClient.removeLocationUpdates(mLocationCallback);
     }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        fusedLocationClient.removeLocationUpdates(mLocationCallback);
+    }
+
+
 
     /**
      * If connected get lat and long
@@ -335,18 +345,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             
             binding.mostrarBTN.setOnClickListener(v -> {
-                Log.d("TAG", "onCreate: " + hayarchivo);
-                if (hayarchivo) {
+                Log.d("siss", "onCreate: " + hayarchivo);
+                if (hayarchivo == true) {
                     try {
                         String json = loadJSONFromAsset();
-                        List<LatLng> Locationlist = new ArrayList<LatLng>();
-                        JSONObject root = new JSONObject(json);
-                        JSONArray jsonArray = root.getJSONArray("locations");
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                        Log.d("siss",  json);
+
+                        //JSONObject root = new JSONObject(json);
+
+                        JSONArray array = new JSONArray(json);
+                        Log.d("siss", " el tamde:  " + array.length());
+
+                        for (int i = 0; i < array.length(); i++) {
+                            JSONObject jsonObject1 = array.getJSONObject(i);
                             double latitud = jsonObject1.getDouble("latitud");
                             double longitud = jsonObject1.getDouble("longitud");
-                            Locationlist.add(new LatLng(latitud, longitud));
+                            Geocoder geocoder1 = new Geocoder(this);
+                            try {
+                                mMap.addMarker(new MarkerOptions().position(new LatLng(latitud, longitud)).title(geocoder1.getFromLocation(latitud, longitud, 1).get(0).getAddressLine(0)));
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            Log.d("thisnuts", String.valueOf(jsonObject1.getDouble("longitud")));
                             LatLng orgi = new LatLng(latitud, longitud);
                             JSONObject jsonObject2 = jsonArray.getJSONObject(i+1);
                             double latitud2 = jsonObject2.getDouble("latitud");
@@ -363,7 +384,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
+
                     }
+                }else{
+                    Toast.makeText(this, "No hay archivo", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -381,18 +405,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String json = null;
         String nomarchivo = "locations.json";
         File tarjeta = Environment.getExternalStorageDirectory();
-        File file = new File(tarjeta.getAbsolutePath(), nomarchivo);
+        File file = new File(getBaseContext().getExternalFilesDir(null), nomarchivo);
+        Log.d("Filejsonpath", "loadJSONFromAsset: " + getBaseContext().getExternalFilesDir(null));
         try {
             FileInputStream fIn = new FileInputStream(file);
             InputStreamReader archivo=new InputStreamReader(fIn);
             BufferedReader br=new BufferedReader(archivo);
             String linea=br.readLine();
+
             String todo="";
             while (linea!=null)
             {
                 todo=todo+linea+"\n";
+
                 linea=br.readLine();
             }
+            Log.d("Filejson", "loadJSONFromAsset: " + todo);
             br.close();
             archivo.close();
             json = todo;
@@ -404,7 +432,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
         return json;
     }
+
+
     private void writeJSONObject(){
+
         jsonArray.put(maps.toJSON());
         Writer output = null;
         String filename= "locations.json";
