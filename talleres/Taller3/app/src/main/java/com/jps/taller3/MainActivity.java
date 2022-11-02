@@ -18,12 +18,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        binding.loginBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent().setClass(MainActivity.this, LoginActivity.class));
+        binding.loginMBTN.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), LoginActivity.class)));
 
-            }
-        });
+        binding.RegisterBTN.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), RegisterActivity.class)));
     }
 }

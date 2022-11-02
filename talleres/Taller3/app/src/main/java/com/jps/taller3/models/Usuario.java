@@ -8,6 +8,8 @@ public class Usuario {
     private String numerodeidentificacion;
     private Double latitud;
     private Double longitud;
+    private boolean isdisponible;
+    private String FCMToken;
 
 
     public Usuario(String nombre, String apellido, String correo, String fotodeperfil, String numerodeidentificacion, Double latitud, Double longitud) {
@@ -18,6 +20,25 @@ public class Usuario {
         this.numerodeidentificacion = numerodeidentificacion;
         this.latitud = latitud;
         this.longitud = longitud;
+    }
+
+    public Usuario() {
+    }
+
+    public boolean isIsdisponible() {
+        return isdisponible;
+    }
+
+    public void setIsdisponible(boolean isdisponible) {
+        this.isdisponible = isdisponible;
+    }
+
+    public String getFCMToken() {
+        return FCMToken;
+    }
+
+    public void setFCMToken(String FCMToken) {
+        this.FCMToken = FCMToken;
     }
 
     public String getNombre() {
