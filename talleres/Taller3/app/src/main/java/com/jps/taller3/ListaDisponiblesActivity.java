@@ -60,8 +60,8 @@ public class ListaDisponiblesActivity extends AppCompatActivity implements UserL
                     UsersAdapter usersAdapter = new UsersAdapter(users, this);
                     binding.usersList.setAdapter(usersAdapter);
                     binding.usersList.setVisibility(View.VISIBLE);
+                    binding.progressBar.setVisibility(View.GONE);
                 }
-
             }
         });
     }
