@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
                 binding.editTextTextPersonName.setError("Email is required");
                 binding.editTextTextPassword.setError("Password is required");
             }
-            if (isEmail(binding.editTextTextPersonName)) {
+            if (!isEmail(binding.editTextTextPersonName)) {
                 binding.editTextTextPersonName.setError("Email is not valid");
             } else {
                 login(String.valueOf(binding.editTextTextPersonName.getText()), String.valueOf(binding.editTextTextPassword.getText()));

@@ -1,18 +1,21 @@
 package com.jps.taller3.models;
 
 public class Usuario {
+    private String id;
     private String nombre;
     private String apellido;
     private String correo;
     private String fotodeperfil;
     private String numerodeidentificacion;
+    private String siguiendoa;
     private Double latitud;
     private Double longitud;
     private boolean isdisponible;
     private String FCMToken;
 
 
-    public Usuario(String nombre, String apellido, String correo, String fotodeperfil, String numerodeidentificacion, Double latitud, Double longitud) {
+    public Usuario(String id,String nombre, String apellido, String correo, String fotodeperfil, String numerodeidentificacion, Double latitud, Double longitud) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
@@ -23,6 +26,23 @@ public class Usuario {
     }
 
     public Usuario() {
+    }
+
+
+    public String getSiguiendoa() {
+        return siguiendoa;
+    }
+
+    public void setSiguiendoa(String siguiendoa) {
+        this.siguiendoa = siguiendoa;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public boolean isIsdisponible() {
