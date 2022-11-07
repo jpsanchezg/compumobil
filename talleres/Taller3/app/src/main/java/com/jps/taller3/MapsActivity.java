@@ -193,6 +193,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setBuildingsEnabled(true);
         if (checkPermissions()) {
             mostrarpuntosjson();
+
+            mLocationCallback = new LocationCallback() {
+                @Override
+                public void onLocationResult(LocationResult locationResult) {
+                    if (locationResult != null) {
+                        if (locationResult == null) {
+                            return;
+                        }
+                        //Showing the latitude, longitude and accuracy on the home screen.
+                        for (Location location : locationResult.getLocations()) {
+
+                            setmCurrentLocation(location);
+                            mCurrentLocation = location;
+
+                            currentLat = location.getLatitude();
+                            currentLong = location.getLongitude();
+
+
+
+                        }
+                    }
+                }
+            };
+
+
             myRef = database.getReference(PATH_USERS + mAuth.getCurrentUser().getUid());
             myRef.getDatabase().getReference(PATH_USERS + mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
@@ -206,12 +231,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     mMap.getUiSettings().setMyLocationButtonEnabled(false);
 
                     Location location = new Location("locationA");
-                    location.setLatitude(Client.getLatitud());
-                    location.setLongitude(Client.getLongitud());
+                    location.setLatitude(currentLat);
+                    location.setLongitude(currentLong);
                     setmCurrentLocation(location);
                     mCurrentLocation = location;
-
-                    LatLng clatlng = new LatLng(Client.getLatitud(), Client.getLongitud());
+                    Client.setLatitud(currentLat);
+                    Client.setLongitud(currentLong);
+                    myRef.setValue(Client);
+                    LatLng clatlng = new LatLng(currentLat, currentLong);
                     mMap.animateCamera(CameraUpdateFactory.newLatLng(clatlng));
                     if (Client.getSiguiendoa() != null) {
                         if (!Client.getSiguiendoa().isEmpty()) {
