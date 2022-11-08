@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -31,8 +32,17 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         mAuth = FirebaseAuth.getInstance();
-
-
+        binding.loginBTN.setVisibility(View.GONE);
+        binding.editTextTextPersonName.setVisibility(View.GONE);
+        binding.editTextTextPassword.setVisibility(View.GONE);
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            updateUI(currentUser);
+        } else {
+            binding.loginBTN.setVisibility(View.VISIBLE);
+            binding.editTextTextPersonName.setVisibility(View.VISIBLE);
+            binding.editTextTextPassword.setVisibility(View.VISIBLE);
+        }
 
         binding.loginBTN.setOnClickListener(v -> {
             String email = binding.editTextTextPersonName.getText().toString();
@@ -49,6 +59,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void login(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {

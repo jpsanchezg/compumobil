@@ -75,7 +75,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public static final int REQUEST_CHECK_SETTINGS = 201;
     String locationPerm = Manifest.permission.ACCESS_FINE_LOCATION;
 
-    private final static float INITIAL_ZOOM_LEVEL = 16.0f;
+    private final static float INITIAL_ZOOM_LEVEL = 14.5f;
     //Variables de localizacion
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest mLocationRequest;
@@ -121,9 +121,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         binding.toolbarMapas.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.logout:
-                    mAuth.signOut();
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    finish();
+                    try {
+                        stopLocationUpdates();
+                        mAuth.signOut();
+                        Thread.sleep(1000);
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     return true;
                 default:
                     return false;
@@ -144,6 +150,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Client = task.getResult().getValue(Usuario.class);
                         Client.setIsdisponible(true);
                         myRef.setValue(Client);
+
                     } else {
                         Toast.makeText(getApplicationContext(), "Error al poner la disponibilidad del perfil", Toast.LENGTH_SHORT).show();
                     }
@@ -191,28 +198,60 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap = googleMap;
         mMap.setBuildingsEnabled(true);
+        mMap.getUiSettings().setAllGesturesEnabled(true);
+        // UI controls
+
+        mMap.getUiSettings().setCompassEnabled(true);
+        mMap.getUiSettings().setMyLocationButtonEnabled(false);
         if (checkPermissions()) {
             mostrarpuntosjson();
+
+            mLocationCallback = new LocationCallback() {
+                @Override
+                public void onLocationResult(LocationResult locationResult) {
+                    if (locationResult != null) {
+                        if (locationResult == null) {
+                            return;
+                        }
+                        //Showing the latitude, longitude and accuracy on the home screen.
+                        for (Location location : locationResult.getLocations()) {
+
+                            setmCurrentLocation(location);
+                            mCurrentLocation = location;
+
+                            currentLat = location.getLatitude();
+                            currentLong = location.getLongitude();
+
+
+                        }
+                    }
+                }
+            };
+
+
             myRef = database.getReference(PATH_USERS + mAuth.getCurrentUser().getUid());
             myRef.getDatabase().getReference(PATH_USERS + mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     Client = task.getResult().getValue(Usuario.class);
-                    mMap.moveCamera(CameraUpdateFactory.zoomTo(INITIAL_ZOOM_LEVEL));
                     // Enable touch gestures
-                    mMap.getUiSettings().setAllGesturesEnabled(true);
-                    // UI controls
 
-                    mMap.getUiSettings().setCompassEnabled(true);
-                    mMap.getUiSettings().setMyLocationButtonEnabled(false);
 
                     Location location = new Location("locationA");
-                    location.setLatitude(Client.getLatitud());
-                    location.setLongitude(Client.getLongitud());
+                    location.setLatitude(currentLat);
+                    location.setLongitude(currentLong);
                     setmCurrentLocation(location);
                     mCurrentLocation = location;
+                    if (!Client.getLatitud().equals(currentLat) && !Client.getLongitud().equals(currentLong)) {
+                        mMap.moveCamera(CameraUpdateFactory.zoomTo(INITIAL_ZOOM_LEVEL));
+                        LatLng clatlng = new LatLng(currentLat, currentLong);
+                        mMap.animateCamera(CameraUpdateFactory.newLatLng(clatlng));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(currentLat, currentLong)));
+                    }else{
+                    Client.setLatitud(currentLat);
+                    Client.setLongitud(currentLong);
+                    myRef.setValue(Client);
+                    }
 
-                    LatLng clatlng = new LatLng(Client.getLatitud(), Client.getLongitud());
-                    mMap.animateCamera(CameraUpdateFactory.newLatLng(clatlng));
                     if (Client.getSiguiendoa() != null) {
                         if (!Client.getSiguiendoa().isEmpty()) {
                             setSiguiendoa(Client.getSiguiendoa());
@@ -277,32 +316,39 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 if (task.isSuccessful()) {
 
                                     Client = task.getResult().getValue(Usuario.class);
-                                    if (Client.getLatitud().equals(currentLat) && Client.getLongitud().equals(currentLong)) {
-                                    } else {
-                                        Location locationA = new Location("point A");
-                                        locationA.setLatitude(mCurrentLocation.getLatitude());
-                                        locationA.setLongitude(mCurrentLocation.getLongitude());
-                                        Location locationB = new Location("point B");
-                                        locationB.setLatitude(Client.getLatitud());
-                                        locationB.setLongitude(Client.getLongitud());
-                                        float distance = locationA.distanceTo(locationB);
-                                        float distanceKm = distance / 1000;
-                                        if (distanceKm > 0.01) {
-                                            mMap.moveCamera(CameraUpdateFactory.zoomTo(INITIAL_ZOOM_LEVEL));
-                                            // Enable touch gestures
-                                            mMap.getUiSettings().setAllGesturesEnabled(true);
-                                            // UI controls
+                                    if (Client.getLatitud() != null && Client.getLongitud() != null) {
 
-                                            mMap.getUiSettings().setCompassEnabled(true);
-                                            mMap.getUiSettings().setMyLocationButtonEnabled(false);
-                                            LatLng clatlng = new LatLng(location.getLatitude(), location.getLongitude());
-                                            mMap.animateCamera(CameraUpdateFactory.newLatLng(clatlng));
+                                        if (Client.getLatitud().equals(currentLat) && Client.getLongitud().equals(currentLong)) {
+                                        } else {
+                                            Location locationA = new Location("point A");
+                                            locationA.setLatitude(mCurrentLocation.getLatitude());
+                                            locationA.setLongitude(mCurrentLocation.getLongitude());
+                                            Location locationB = new Location("point B");
+                                            locationB.setLatitude(Client.getLatitud());
+                                            locationB.setLongitude(Client.getLongitud());
+                                            float distance = locationA.distanceTo(locationB);
+                                            float distanceKm = distance / 1000;
+                                            if (distanceKm > 0.01) {
+                                                mMap.moveCamera(CameraUpdateFactory.zoomTo(INITIAL_ZOOM_LEVEL));
+                                                // Enable touch gestures
+                                                mMap.getUiSettings().setAllGesturesEnabled(true);
+                                                // UI controls
 
-                                            Client.setLatitud(currentLat);
-                                            Client.setLongitud(currentLong);
-                                            myRef.setValue(Client);
+                                                mMap.getUiSettings().setCompassEnabled(true);
+                                                mMap.getUiSettings().setMyLocationButtonEnabled(false);
+                                                LatLng clatlng = new LatLng(location.getLatitude(), location.getLongitude());
+                                                mMap.animateCamera(CameraUpdateFactory.newLatLng(clatlng));
+
+                                                Client.setLatitud(currentLat);
+                                                Client.setLongitud(currentLong);
+                                                myRef.setValue(Client);
+                                            }
+
                                         }
-
+                                    } else {
+                                        Client.setLatitud(currentLat);
+                                        Client.setLongitud(currentLong);
+                                        myRef.setValue(Client);
                                     }
 
                                 } else {
@@ -404,7 +450,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private LocationRequest createLocationRequest() {
         LocationRequest locationRequest = LocationRequest.create()
-                .setInterval(1000)
+                .setInterval(3000)
                 .setFastestInterval(500)
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         return locationRequest;
@@ -439,12 +485,59 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void turnOnLocationAndStartUpdates() {
+        mLocationRequest = createLocationRequest();
         LocationSettingsRequest.Builder builder =
                 new LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest);
         SettingsClient client = LocationServices.getSettingsClient(this);
         Task<LocationSettingsResponse> task =
                 client.checkLocationSettings(builder.build());
         task.addOnSuccessListener(this, locationSettingsResponse -> {
+
+            mLocationCallback = new LocationCallback() {
+                @SuppressLint("MissingPermission")
+                @Override
+                public void onLocationResult(LocationResult locationResult) {
+                    if (locationResult != null) {
+                        if (locationResult == null) {
+                            return;
+                        }
+                        //Showing the latitude, longitude and accuracy on the home screen.
+                        for (Location location : locationResult.getLocations()) {
+                            mMap.setMyLocationEnabled(true);
+                            mMap.isMyLocationEnabled();
+                            mMap.moveCamera(CameraUpdateFactory.zoomTo(INITIAL_ZOOM_LEVEL));
+                            // Enable touch gestures
+                            mMap.getUiSettings().setAllGesturesEnabled(true);
+                            // UI controls
+
+                            mMap.getUiSettings().setCompassEnabled(true);
+                            mMap.getUiSettings().setMyLocationButtonEnabled(false);
+                            LatLng clatlng = new LatLng(location.getLatitude(), location.getLongitude());
+                            mMap.animateCamera(CameraUpdateFactory.newLatLng(clatlng));
+
+                            setmCurrentLocation(location);
+                            mCurrentLocation = location;
+
+                            myRef = database.getReference(PATH_USERS + mAuth.getCurrentUser().getUid());
+                            myRef.getDatabase().getReference(PATH_USERS + mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+
+                                    Client = task.getResult().getValue(Usuario.class);
+
+                                    Client.setLatitud(mCurrentLocation.getLatitude());
+                                    Client.setLongitud(mCurrentLocation.getLongitude());
+                                    myRef.setValue(Client);
+
+
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Error al poner la disponibilidad del perfil", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    }
+                }
+            };
+            mostrarpuntosjson();
             startLocationUpdates(); //condiciones localizaciones
         });
         task.addOnFailureListener(this, new OnFailureListener() {
@@ -497,7 +590,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onPause() {
         super.onPause();
-        stopLocationUpdates();
+        //stopLocationUpdates();
     }
 
     @Override
