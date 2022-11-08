@@ -1,14 +1,10 @@
 package com.jps.taller3;
 
-import static android.content.ContentValues.TAG;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -18,17 +14,13 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.messaging.FirebaseMessaging;
-import com.jps.taller3.databinding.ActivityRegisterBinding;
+import com.jps.taller3.databinding.ActivityRegistroBinding;
 import com.jps.taller3.models.Usuario;
 
 import java.io.ByteArrayOutputStream;
@@ -36,15 +28,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegisterActivity extends AppCompatActivity {
-
-    ActivityRegisterBinding binding;
+public class RegistroActivity extends AppCompatActivity {
+    private ActivityRegistroBinding binding;
     private FirebaseAuth mAuth;
     public static final String PATH_USERS = "users/";
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef;
-
+    Usuario nUser = new Usuario();
+    String msg;
+    Usuario prueba = new Usuario();
 
     int SELECT_PICTURE = 200;
     int CAMERA_REQUEST = 100;
@@ -54,20 +47,24 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityRegisterBinding.inflate(getLayoutInflater());
+        binding = ActivityRegistroBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         mAuth = FirebaseAuth.getInstance();
 
+
+
+
+
         binding.fotodeperfil.setOnClickListener(v -> {
 
             final CharSequence[] options = {"Tomar foto", "Elegir de galeria", "Cancelar"};
-            AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(RegistroActivity.this);
             builder.setTitle("Elige una opcion");
             builder.setItems(options, (dialog, item) -> {
                 if (options[item].equals("Tomar foto")) {
-                    if (ContextCompat.checkSelfPermission(RegisterActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(RegisterActivity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST);
+                    if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(RegistroActivity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST);
                     } else {
                         if (checkAndRequestPermissions()) {
                             Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
@@ -86,8 +83,12 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
             builder.show();
+        });
 
-
+        binding.RegistrarpersonaBTN.setOnClickListener(view -> {
+            String email = binding.editTextTextEmail.getText().toString();
+            String password = binding.editTextTextContrasena.getText().toString();
+            createFirebaseAuthUser(email, password);
         });
     }
 
@@ -106,7 +107,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (resultCode == RESULT_OK) {
 
             // compare the resultCode with the
@@ -144,13 +144,6 @@ public class RegisterActivity extends AppCompatActivity {
 
             binding.fotodeperfil.setImageBitmap(image);
         }
-
-        binding.RegistrarpersonaBTN.setOnClickListener(view -> {
-            String email = binding.editTextTextEmail.getText().toString();
-            String password = binding.editTextTextContrasena.getText().toString();
-            createFirebaseAuthUser(email, password);
-        });
-
     }
 
 
@@ -163,8 +156,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    Usuario nUser = new Usuario();
-    String msg;
+
 
     private Usuario createUserObject() {
 
@@ -173,11 +165,9 @@ public class RegisterActivity extends AppCompatActivity {
         nUser.setCorreo(binding.editTextTextEmail.getText().toString());
         nUser.setFotodeperfil(fotoS);
         nUser.setNumerodeidentificacion(binding.editTextNumerodeidentificacion.getText().toString());
-
         return nUser;
     }
 
-    Usuario prueba = new Usuario();
 
     private void saveUser() {
         Usuario Client = createUserObject();
@@ -191,23 +181,6 @@ public class RegisterActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Error al registrar usuario", Toast.LENGTH_SHORT).show();
             }
         });
-        /*FirebaseMessaging.getInstance().getToken()
-                .addOnCompleteListener(task -> {
-                    if (!task.isSuccessful()) {
-                        Log.w(TAG, "Fetching FCM registration token failed", task.getException());
-                        return;
-                    }
-
-                    // Get new FCM registration token
-                    String token = task.getResult();
-
-                    // Log and toast
-                    msg = getString(R.string.msg_token_fmt, token);
-                    Log.d("thisnuts", msg);
-                    Toast.makeText(RegisterActivity.this, msg, Toast.LENGTH_SHORT).show();
-                });
-        Log.d("thisnuts", msg);
-*/
     }
 
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 1;
@@ -240,6 +213,5 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return true;
     }
-
 
 }

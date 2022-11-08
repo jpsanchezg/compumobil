@@ -27,36 +27,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.loginMBTN.setVisibility(View.GONE);
-        binding.RegisterBTN.setVisibility(View.GONE);
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            updateUI(currentUser);
-        } else {
-            binding.loginMBTN.setVisibility(View.VISIBLE);
-            binding.RegisterBTN.setVisibility(View.VISIBLE);
-        }
-        binding.loginMBTN.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), LoginActivity.class)));
 
-        binding.RegisterBTN.setOnClickListener(view -> startActivity(new Intent(getApplicationContext(), RegisterActivity.class)));
-    }
+        binding.loginMBTN.setVisibility(View.VISIBLE);
+        binding.RegisterBTN.setVisibility(View.VISIBLE);
 
-
-    private void updateUI(FirebaseUser user) {
-        if (user != null) {
-            myRef = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
-
-            myRef.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-
-                    if (task.getResult().exists()) {
-                        startActivity(new Intent(getApplicationContext(), MapsActivity.class));
-                        finish();
-                    }
-                }
-            });
-
-        }
+        binding.loginMBTN.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            finish();
+        });
+        binding.RegisterBTN.setOnClickListener(view -> {
+            startActivity(new Intent(getApplicationContext(), RegistroActivity.class));
+            finish();
+        });
     }
 }
