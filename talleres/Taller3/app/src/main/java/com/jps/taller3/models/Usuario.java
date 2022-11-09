@@ -1,6 +1,8 @@
 package com.jps.taller3.models;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
     private String id;
     private String nombre;
     private String apellido;

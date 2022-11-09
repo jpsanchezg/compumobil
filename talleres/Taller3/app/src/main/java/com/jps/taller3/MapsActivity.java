@@ -4,18 +4,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -42,6 +50,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -61,6 +70,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.Objects;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -82,12 +92,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationCallback mLocationCallback;
     public Location mCurrentLocation;
 
+    public static final String CHANNEL_ID = "MyApp";
+    private final static int NOTIFICACION_ID = 0;
+    private NotificationManagerCompat notificationManager;
+    Marker mymarker;
+
     public Location getmCurrentLocation() {
         return mCurrentLocation;
     }
 
     public void setmCurrentLocation(Location mCurrentLocation) {
         this.mCurrentLocation = mCurrentLocation;
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 
     public static final String PATH_USERS = "users/";
@@ -115,6 +135,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         mAuth = FirebaseAuth.getInstance();
+
+        notificationManager = NotificationManagerCompat.from(this);
+
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         mLocationRequest = createLocationRequest();
@@ -144,12 +167,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         binding.toolbarMapas.getMenu().findItem(R.id.disponible).getActionView().findViewById(R.id.switch2).setOnClickListener(v -> {
             Log.d("Switch", "Switch" + ((Switch) v).isChecked());
             if (((Switch) v).isChecked()) {
-                myRef = database.getReference(PATH_USERS + mAuth.getCurrentUser().getUid());
+                myRef = database.getReference(PATH_USERS + Objects.requireNonNull(mAuth.getCurrentUser()).getUid());
                 myRef.getDatabase().getReference(PATH_USERS + mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Client = task.getResult().getValue(Usuario.class);
+                        assert Client != null;
                         Client.setIsdisponible(true);
                         myRef.setValue(Client);
+                        crearNotificacionChannel();
+                        crearNotificacion(Client);
 
                     } else {
                         Toast.makeText(getApplicationContext(), "Error al poner la disponibilidad del perfil", Toast.LENGTH_SHORT).show();
@@ -241,15 +267,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     location.setLongitude(currentLong);
                     setmCurrentLocation(location);
                     mCurrentLocation = location;
-                    if (!Client.getLatitud().equals(currentLat) && !Client.getLongitud().equals(currentLong)) {
-                        mMap.moveCamera(CameraUpdateFactory.zoomTo(INITIAL_ZOOM_LEVEL));
-                        LatLng clatlng = new LatLng(currentLat, currentLong);
-                        mMap.animateCamera(CameraUpdateFactory.newLatLng(clatlng));
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(currentLat, currentLong)));
-                    }else{
-                    Client.setLatitud(currentLat);
-                    Client.setLongitud(currentLong);
-                    myRef.setValue(Client);
+                    if(Client.getLatitud() != null && Client.getLongitud() != null){
+                        if (!Client.getLatitud().equals(currentLat) && !Client.getLongitud().equals(currentLong)) {
+                            mMap.moveCamera(CameraUpdateFactory.zoomTo(INITIAL_ZOOM_LEVEL));
+                            LatLng clatlng = new LatLng(currentLat, currentLong);
+                            mMap.animateCamera(CameraUpdateFactory.newLatLng(clatlng));
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(currentLat, currentLong)));
+                        }else{
+                            Client.setLatitud(currentLat);
+                            Client.setLongitud(currentLong);
+                            myRef.setValue(Client);
+                        }
                     }
 
                     if (Client.getSiguiendoa() != null) {
@@ -562,6 +590,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
+    private void crearNotificacionChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "channel";
+            String description = "channel description";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            //IMPORTANCE_MAX MUESTRA LA NOTIFICACIÓN ANIMADA
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    private void crearNotificacion(Usuario u) {
+        Intent intent = new Intent(MapsActivity.this, ListaDisponiblesActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("usuario", u);
+        intent.putExtras(bundle);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+        builder.setSmallIcon(R.drawable.ic_launcher_background);
+        builder.setContentTitle(u.getNombre() + " esta disponible");
+        builder.setGroup(CHANNEL_ID);
+        builder.setColor(Color.BLUE);
+        builder.setContentIntent(pendingIntent);
+        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        builder.setVibrate(new long[]{1000, 1000});
+        builder.setDefaults(Notification.DEFAULT_SOUND);
+        builder.setAutoCancel(true);
+        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        nm.notify(0, builder.build());
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -606,6 +670,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onStart() {
         super.onStart();
+        crearNotificacionChannel();
     }
 
     @Override

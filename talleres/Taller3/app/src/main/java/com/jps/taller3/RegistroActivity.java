@@ -157,7 +157,6 @@ public class RegistroActivity extends AppCompatActivity {
 
 
 
-
     private Usuario createUserObject() {
 
         nUser.setNombre(binding.editTextTextNombre.getText().toString());
