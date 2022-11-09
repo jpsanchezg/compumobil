@@ -25,4 +25,19 @@
     <string name="login">Iniciar Sesión</string>
     <string name="correo">Correo</string>
     <string name="password">Contraseña</string>
+    <string name="hello">¡Hola!</string>
+    <string name="des">Anímate a llenar los datos a continuación para ser parte de\n la comunidad</string>
+    <string name="name">Nombre:</string>
+    <string name="namedes">Ingresa aquí tu nombre...</string>
+    <string name="last">Apellido:</string>
+    <string name="lastdes">Ingresa aquí tu apellido..</string>
+    <string name="mail">Correo:</string>
+    <string name="maildes">Ingresa aquí tu correo..</string>
+    <string name="pass">Contraseña:</string>
+    <string name="passdes">Ingresa aquí tu contraseña..</string>
+    <string name="iden">Identificación:</string>
+    <string name="idendes">Ingresa aquí tu numero de identificación..</string>
+    <string name="profile">Foto Perfil:</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="hola">Hola</string>
 </resources>

@@ -613,7 +613,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Bundle bundle = new Bundle();
         bundle.putSerializable("usuario", u);
         intent.putExtras(bundle);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), Integer.parseInt(u.getNumerodeidentificacion()), intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), Integer.parseInt(u.getNumerodeidentificacion()), intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_MUTABLE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
         builder.setSmallIcon(R.drawable.ic_launcher_background);
         builder.setContentTitle(u.getNombre() + " esta disponible");
