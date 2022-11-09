@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.4\\com.example.taller2.app-mergeDebugResources-31:\\layout\\activity_main_imagenes.xml",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.4\\com.example.taller2.app-main-34:\\layout\\activity_main_imagenes.xml"
+    },
+    {
+        "merged": "com.example.taller2.app-mergeDebugResources-31:/layout/activity_main_imagenes.xml",
+        "source": "com.example.taller2.app-main-34:/layout/activity_main_imagenes.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.4\\com.example.taller2.app-mergeDebugResources-31:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.4\\com.example.taller2.app-main-34:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.4\\com.example.taller2.app-mergeDebugResources-31:\\layout\\activity_maps.xml",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.4\\com.example.taller2.app-main-34:\\layout\\activity_maps.xml"
+    }
+]

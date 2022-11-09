@@ -1,0 +1,226 @@
+[
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\xml\\data_extraction_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xxxhdpi_smoke_foreground.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xxxhdpi\\smoke_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-hdpi_smoke_round.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-hdpi\\smoke_round.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xxhdpi_smoke.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xxhdpi\\smoke.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xhdpi_smoke_round.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xhdpi\\smoke_round.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-mdpi_fibonacci_round.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-mdpi\\fibonacci_round.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-hdpi_fibonacci.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-hdpi\\fibonacci.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-hdpi_fibonacci_round.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-hdpi\\fibonacci_round.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-mdpi_smoke.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-mdpi\\smoke.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xxhdpi_fibonacci_round.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xxhdpi\\fibonacci_round.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-anydpi-v26_smoke_round.xml.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-anydpi-v26\\smoke_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-hdpi_smoke_foreground.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-hdpi\\smoke_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-hdpi_fibonacci_foreground.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-hdpi\\fibonacci_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-hdpi_smoke.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-hdpi\\smoke.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-mdpi_fibonacci_foreground.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-mdpi\\fibonacci_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xxhdpi_smoke_round.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xxhdpi\\smoke_round.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-hdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-mdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xhdpi_fibonacci.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xhdpi\\fibonacci.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xxhdpi_smoke_foreground.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xxhdpi\\smoke_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xhdpi_fibonacci_foreground.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xhdpi\\fibonacci_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xxxhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-mdpi_fibonacci.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-mdpi\\fibonacci.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\xml\\backup_rules.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.taller1.app-merged_res-25:/layout_activity_fibonacci.xml.flat",
+        "source": "com.example.taller1.app-main-27:/layout/activity_fibonacci.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-mdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xhdpi_smoke.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xhdpi\\smoke.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xxxhdpi_fibonacci_round.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xxxhdpi\\fibonacci_round.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-anydpi-v26_fibonacci_round.xml.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-anydpi-v26\\fibonacci_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xhdpi_fibonacci_round.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xhdpi\\fibonacci_round.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\layout_activity_fibonacci.xml.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\layout\\activity_fibonacci.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-mdpi_smoke_foreground.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-mdpi\\smoke_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xxxhdpi_fibonacci_foreground.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xxxhdpi\\fibonacci_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-anydpi-v26_fibonacci.xml.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-anydpi-v26\\fibonacci.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\layout_activity_detalle_pais.xml.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\layout\\activity_detalle_pais.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-mdpi_smoke_round.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-mdpi\\smoke_round.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xxhdpi_fibonacci_foreground.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xxhdpi\\fibonacci_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\layout_activity_pais.xml.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\layout\\activity_pais.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xxxhdpi_smoke.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xxxhdpi\\smoke.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\layout_activity_factorial.xml.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\layout\\activity_factorial.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xxhdpi_fibonacci.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xxhdpi\\fibonacci.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xxxhdpi_fibonacci.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xxxhdpi\\fibonacci.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-anydpi-v26_smoke.xml.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-anydpi-v26\\smoke.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\drawable-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xhdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xhdpi_smoke_foreground.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xhdpi\\smoke_foreground.png"
+    },
+    {
+        "merged": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-merged_res-25:\\mipmap-xxxhdpi_smoke_round.png.flat",
+        "source": "C:\\Users\\juanp\\.gradle\\daemon\\7.3.3\\com.example.taller1.app-main-27:\\mipmap-xxxhdpi\\smoke_round.png"
+    }
+]

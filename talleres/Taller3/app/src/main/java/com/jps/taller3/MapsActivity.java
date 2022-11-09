@@ -278,13 +278,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     location.setLongitude(currentLong);
                     setmCurrentLocation(location);
                     mCurrentLocation = location;
-                    if(Client.getLatitud() != null && Client.getLongitud() != null){
+                    if (Client.getLatitud() != null && Client.getLongitud() != null) {
                         if (!Client.getLatitud().equals(currentLat) && !Client.getLongitud().equals(currentLong)) {
                             mMap.moveCamera(CameraUpdateFactory.zoomTo(INITIAL_ZOOM_LEVEL));
                             LatLng clatlng = new LatLng(currentLat, currentLong);
                             mMap.animateCamera(CameraUpdateFactory.newLatLng(clatlng));
                             mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(currentLat, currentLong)));
-                        }else{
+                        } else {
                             Client.setLatitud(currentLat);
                             Client.setLongitud(currentLong);
                             myRef.setValue(Client);
@@ -646,7 +646,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Bundle bundle = new Bundle();
         bundle.putSerializable("usuario", u);
         intent.putExtras(bundle);
+<<<<<<< refs/remotes/origin/master
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), Integer.parseInt(u.getNumerodeidentificacion()), intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_MUTABLE);
+=======
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), Integer.parseInt(u.getNumerodeidentificacion()), intent, PendingIntent.FLAG_CANCEL_CURRENT| PendingIntent.FLAG_IMMUTABLE);
+>>>>>>> notificaciones hecho
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
         builder.setSmallIcon(R.drawable.ic_launcher_background);
         builder.setContentTitle(u.getNombre() + " esta disponible");
@@ -658,7 +662,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         builder.setDefaults(Notification.DEFAULT_SOUND);
         builder.setAutoCancel(true);
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        nm.notify( Integer.parseInt(u.getNumerodeidentificacion()), builder.build());
+        nm.notify(Integer.parseInt(u.getNumerodeidentificacion()), builder.build());
     }
 
 

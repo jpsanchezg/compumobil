@@ -1,0 +1,113 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.taller1"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="31"
+8-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="32" />
+9-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:6:5-67
+11-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:6:22-64
+12
+13    <application
+13-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:8:5-39:19
+14        android:allowBackup="true"
+14-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:9:9-35
+15        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+15-->[androidx.core:core:1.7.0] C:\Users\juanp\.gradle\caches\transforms-3\c61287263f7ce0bc369b924eb1beec7d\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+16        android:dataExtractionRules="@xml/data_extraction_rules"
+16-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:10:9-65
+17        android:debuggable="true"
+18        android:extractNativeLibs="false"
+19        android:fullBackupContent="@xml/backup_rules"
+19-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:11:9-54
+20        android:icon="@mipmap/ic_launcher"
+20-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:12:9-43
+21        android:label="@string/app_name"
+21-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:13:9-41
+22        android:roundIcon="@mipmap/ic_launcher_round"
+22-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:14:9-54
+23        android:supportsRtl="true"
+23-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:15:9-35
+24        android:testOnly="true"
+25        android:theme="@style/Theme.Taller1" >
+25-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:16:9-45
+26        <activity
+26-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:18:9-20:40
+27            android:name="com.example.taller1.DetallePaisActivity"
+27-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:19:13-48
+28            android:exported="false" />
+28-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:20:13-37
+29        <activity
+29-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:21:9-23:40
+30            android:name="com.example.taller1.PaisActivity"
+30-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:22:13-41
+31            android:exported="false" />
+31-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:23:13-37
+32        <activity
+32-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:24:9-26:40
+33            android:name="com.example.taller1.FactorialActivity"
+33-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:25:13-46
+34            android:exported="false" />
+34-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:26:13-37
+35        <activity
+35-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:27:9-29:40
+36            android:name="com.example.taller1.FibonacciActivity"
+36-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:28:13-46
+37            android:exported="false" />
+37-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:29:13-37
+38        <activity
+38-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:30:9-38:20
+39            android:name="com.example.taller1.MainActivity"
+39-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:31:13-41
+40            android:exported="true" >
+40-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:32:13-36
+41            <intent-filter>
+41-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:33:13-37:29
+42                <action android:name="android.intent.action.MAIN" />
+42-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:34:17-69
+42-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:34:25-66
+43
+44                <category android:name="android.intent.category.LAUNCHER" />
+44-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:36:17-77
+44-->C:\Users\juanp\Documents\github\compumobil\talleres\taller1\app\src\main\AndroidManifest.xml:36:27-74
+45            </intent-filter>
+46        </activity>
+47
+48        <provider
+48-->[com.squareup.picasso:picasso:2.71828] C:\Users\juanp\.gradle\caches\transforms-3\463ab7256afb3b584e41185fe9baecc7\transformed\picasso-2.71828\AndroidManifest.xml:8:9-11:40
+49            android:name="com.squareup.picasso.PicassoProvider"
+49-->[com.squareup.picasso:picasso:2.71828] C:\Users\juanp\.gradle\caches\transforms-3\463ab7256afb3b584e41185fe9baecc7\transformed\picasso-2.71828\AndroidManifest.xml:9:13-64
+50            android:authorities="com.example.taller1.com.squareup.picasso"
+50-->[com.squareup.picasso:picasso:2.71828] C:\Users\juanp\.gradle\caches\transforms-3\463ab7256afb3b584e41185fe9baecc7\transformed\picasso-2.71828\AndroidManifest.xml:10:13-72
+51            android:exported="false" />
+51-->[com.squareup.picasso:picasso:2.71828] C:\Users\juanp\.gradle\caches\transforms-3\463ab7256afb3b584e41185fe9baecc7\transformed\picasso-2.71828\AndroidManifest.xml:11:13-37
+52        <provider
+52-->[androidx.emoji2:emoji2:1.0.0] C:\Users\juanp\.gradle\caches\transforms-3\0db2a54fe3e61853a6995181bdd477b5\transformed\emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+53            android:name="androidx.startup.InitializationProvider"
+53-->[androidx.emoji2:emoji2:1.0.0] C:\Users\juanp\.gradle\caches\transforms-3\0db2a54fe3e61853a6995181bdd477b5\transformed\emoji2-1.0.0\AndroidManifest.xml:27:13-67
+54            android:authorities="com.example.taller1.androidx-startup"
+54-->[androidx.emoji2:emoji2:1.0.0] C:\Users\juanp\.gradle\caches\transforms-3\0db2a54fe3e61853a6995181bdd477b5\transformed\emoji2-1.0.0\AndroidManifest.xml:28:13-68
+55            android:exported="false" >
+55-->[androidx.emoji2:emoji2:1.0.0] C:\Users\juanp\.gradle\caches\transforms-3\0db2a54fe3e61853a6995181bdd477b5\transformed\emoji2-1.0.0\AndroidManifest.xml:29:13-37
+56            <meta-data
+56-->[androidx.emoji2:emoji2:1.0.0] C:\Users\juanp\.gradle\caches\transforms-3\0db2a54fe3e61853a6995181bdd477b5\transformed\emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+57                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+57-->[androidx.emoji2:emoji2:1.0.0] C:\Users\juanp\.gradle\caches\transforms-3\0db2a54fe3e61853a6995181bdd477b5\transformed\emoji2-1.0.0\AndroidManifest.xml:32:17-75
+58                android:value="androidx.startup" />
+58-->[androidx.emoji2:emoji2:1.0.0] C:\Users\juanp\.gradle\caches\transforms-3\0db2a54fe3e61853a6995181bdd477b5\transformed\emoji2-1.0.0\AndroidManifest.xml:33:17-49
+59            <meta-data
+59-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\juanp\.gradle\caches\transforms-3\429d62d1c4cfac9c73f86410faad713f\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+60                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+60-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\juanp\.gradle\caches\transforms-3\429d62d1c4cfac9c73f86410faad713f\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+61                android:value="androidx.startup" />
+61-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\juanp\.gradle\caches\transforms-3\429d62d1c4cfac9c73f86410faad713f\transformed\lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+62        </provider>
+63    </application>
+64
+65</manifest>
