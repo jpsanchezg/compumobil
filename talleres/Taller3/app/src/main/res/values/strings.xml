@@ -23,4 +23,6 @@
     <string name="content">Imagen hola</string>
     <string name="registrar">Registrar</string>
     <string name="login">Iniciar Sesión</string>
+    <string name="correo">Correo</string>
+    <string name="password">Contraseña</string>
 </resources>
