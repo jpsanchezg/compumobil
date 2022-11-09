@@ -18,4 +18,9 @@
     <string name="default_notification_channel_name" translatable="true">News</string>
     <string name="msg_subscribe_failed">Failed to subscribe to news topic</string>
     <string name="esta_disponible">Esta disponible</string>
+    <string name="welcome">¡Bienvenidx!</string>
+    <string name="welcomedes">La aplicación que te permitirá encontrar fácilmente a\n tus amigos</string>
+    <string name="content">Imagen hola</string>
+    <string name="registrar">Registrar</string>
+    <string name="login">Iniciar Sesión</string>
 </resources>
