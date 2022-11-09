@@ -99,4 +99,6 @@ public class ListaDisponiblesActivity extends AppCompatActivity implements UserL
         startActivity(new Intent(getApplicationContext(), MapsActivity.class));
         finish();
     }
+
+    
 }

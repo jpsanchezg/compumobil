@@ -147,9 +147,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     try {
                         stopLocationUpdates();
                         mAuth.signOut();
+                        stopLocationUpdates();
                         Thread.sleep(1000);
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         finish();
+                        finishActivity(1);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
