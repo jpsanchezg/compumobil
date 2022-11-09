@@ -590,6 +590,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
+
     private void crearNotificacionChannel() {
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
@@ -612,7 +613,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Bundle bundle = new Bundle();
         bundle.putSerializable("usuario", u);
         intent.putExtras(bundle);
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), Integer.parseInt(u.getNumerodeidentificacion()), intent, PendingIntent.FLAG_CANCEL_CURRENT);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
         builder.setSmallIcon(R.drawable.ic_launcher_background);
         builder.setContentTitle(u.getNombre() + " esta disponible");
@@ -624,8 +625,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         builder.setDefaults(Notification.DEFAULT_SOUND);
         builder.setAutoCancel(true);
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        nm.notify(0, builder.build());
+        nm.notify( Integer.parseInt(u.getNumerodeidentificacion()), builder.build());
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
