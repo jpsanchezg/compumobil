@@ -60,6 +60,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.jps.taller3.databinding.ActivityMapsBinding;
 import com.jps.taller3.models.Usuario;
 
@@ -69,7 +72,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -79,7 +84,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private FirebaseAuth mAuth;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private FirebaseFirestore db;
     DatabaseReference myRef;
+    private List<Usuario> availabeUsers;
     //Variables de permisos
     private final int LOCATION_PERMISSION_ID = 103;
     public static final int REQUEST_CHECK_SETTINGS = 201;
@@ -132,6 +139,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        availabeUsers = new ArrayList<>();
+        db = FirebaseFirestore.getInstance();
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         mAuth = FirebaseAuth.getInstance();
@@ -177,7 +186,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Client.setIsdisponible(true);
                         myRef.setValue(Client);
                         crearNotificacionChannel();
-                        crearNotificacion(Client);
+                        loadSubscriptionUsers();
 
                     } else {
                         Toast.makeText(getApplicationContext(), "Error al poner la disponibilidad del perfil", Toast.LENGTH_SHORT).show();
@@ -421,6 +430,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
         startLocationUpdates();
+    }
+
+    public void loadSubscriptionUsers() {
+        CollectionReference dbUsers = db.collection("Usuarios");
+        dbUsers.whereEqualTo("disponible", true)
+                .addSnapshotListener((value, e) -> {
+                    if (e != null) {
+                        Log.w(MapsActivity.class.getName(), "Listen failed.", e);
+                        return;
+                    }
+
+                    for (DocumentSnapshot snapshot : value) {
+                        Usuario u = snapshot.toObject(Usuario.class);
+                        if (!mAuth.getCurrentUser().getEmail().equals(u.getCorreo())) {
+                            availabeUsers.add(u);
+                            crearNotificacion(u);
+                        }
+
+                    }
+
+                });
+
     }
 
     private boolean checkPermissions() {
