@@ -39,13 +39,20 @@ public class ListaDisponiblesActivity extends AppCompatActivity implements UserL
         setContentView(binding.getRoot());
         mAuth = FirebaseAuth.getInstance();
         myRef = database.getReference(PATH_USERS);
-        getUsers();
+        if (mAuth.getCurrentUser() == null) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        } else {
+            getUsers();
+        }
+
+
     }
 
 
     private void getUsers() {
         List<Usuario> users = new ArrayList<>();
-
+        myRef = database.getReference(PATH_USERS);
         myRef.getDatabase().getReference(PATH_USERS).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (DataSnapshot walker : task.getResult().getChildren()) {
@@ -100,5 +107,5 @@ public class ListaDisponiblesActivity extends AppCompatActivity implements UserL
         finish();
     }
 
-    
+
 }

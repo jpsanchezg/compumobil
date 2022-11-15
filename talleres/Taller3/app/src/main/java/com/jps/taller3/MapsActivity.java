@@ -60,9 +60,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
+
 import com.jps.taller3.databinding.ActivityMapsBinding;
 import com.jps.taller3.models.Usuario;
 
@@ -84,9 +82,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private FirebaseAuth mAuth;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private FirebaseFirestore db;
+
     DatabaseReference myRef;
-    private List<Usuario> availabeUsers;
     //Variables de permisos
     private final int LOCATION_PERMISSION_ID = 103;
     public static final int REQUEST_CHECK_SETTINGS = 201;
@@ -139,12 +136,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        availabeUsers = new ArrayList<>();
-        db = FirebaseFirestore.getInstance();
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         mAuth = FirebaseAuth.getInstance();
-
+        crearNotificacionChannel();
         notificationManager = NotificationManagerCompat.from(this);
 
 
@@ -170,7 +165,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-
         binding.PDisponiblesBTN.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), ListaDisponiblesActivity.class));
             finish();
@@ -182,11 +176,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 myRef.getDatabase().getReference(PATH_USERS + mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         Client = task.getResult().getValue(Usuario.class);
-                        assert Client != null;
                         Client.setIsdisponible(true);
                         myRef.setValue(Client);
-                        crearNotificacionChannel();
-                        loadSubscriptionUsers();
 
                     } else {
                         Toast.makeText(getApplicationContext(), "Error al poner la disponibilidad del perfil", Toast.LENGTH_SHORT).show();
@@ -203,6 +194,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Toast.makeText(getApplicationContext(), "Error al poner la disponibilidad del perfil", Toast.LENGTH_SHORT).show();
                     }
                 });
+            }
+        });
+
+
+        myRef = database.getReference(PATH_USERS);
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    Usuario user = child.getValue(Usuario.class);
+                    if (user != null) {
+                        if (!child.getKey().equals(mAuth.getCurrentUser().getUid())) {
+                            if (user.isIsdisponible()) {
+                                crearNotificacion(user);
+                            }
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
@@ -399,9 +413,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             };
 
-            Log.d("locas", "onMapReady: " + getSiguiendoa());
-            Log.d("locas", "onMapReady: " + Client.getSiguiendoa());
-            Log.d("locas", "onMapReady: " + siguiendoa);
             if (getSiguiendoa() != null) {
 
                 myRef = database.getReference(PATH_USERS + getSiguiendoa());
@@ -429,30 +440,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 });
             }
         }
+
         startLocationUpdates();
     }
 
-    public void loadSubscriptionUsers() {
-        CollectionReference dbUsers = db.collection("Usuarios");
-        dbUsers.whereEqualTo("disponible", true)
-                .addSnapshotListener((value, e) -> {
-                    if (e != null) {
-                        Log.w(MapsActivity.class.getName(), "Listen failed.", e);
-                        return;
-                    }
-
-                    for (DocumentSnapshot snapshot : value) {
-                        Usuario u = snapshot.toObject(Usuario.class);
-                        if (!mAuth.getCurrentUser().getEmail().equals(u.getCorreo())) {
-                            availabeUsers.add(u);
-                            crearNotificacion(u);
-                        }
-
-                    }
-
-                });
-
-    }
 
     private boolean checkPermissions() {
         if (ContextCompat.checkSelfPermission(this,
@@ -494,6 +485,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+
+    public void startnotifications() {
+
+    }
 
     @SuppressLint("MissingPermission")
     private void startLocationUpdates() {
@@ -631,7 +626,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             CharSequence name = "channel";
             String description = "channel description";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            //IMPORTANCE_MAX MUESTRA LA NOTIFICACIÓN ANIMADA
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
             channel.setDescription(description);
             // Register the channel with the system; you can't change the importance
@@ -642,27 +636,41 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void crearNotificacion(Usuario u) {
+        Intent intent = new Intent(this, ListaDisponiblesActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle(u.getNombre() + " esta disponible")
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                // Set the intent that will fire when the user taps the notification
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+
+// notificationId is a unique int for each notification that you must define
+        notificationManager.notify(1, builder.build());
+        /*
         Intent intent = new Intent(MapsActivity.this, ListaDisponiblesActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable("usuario", u);
         intent.putExtras(bundle);
-<<<<<<< refs/remotes/origin/master
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), Integer.parseInt(u.getNumerodeidentificacion()), intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_MUTABLE);
-=======
-        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), Integer.parseInt(u.getNumerodeidentificacion()), intent, PendingIntent.FLAG_CANCEL_CURRENT| PendingIntent.FLAG_IMMUTABLE);
->>>>>>> notificaciones hecho
+        PendingIntent pendingIntent = PendingIntent.getActivity(MapsActivity.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_ONE_SHOT| PendingIntent.FLAG_MUTABLE);
+        //PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), Integer.parseInt(u.getNumerodeidentificacion()), intent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_ONE_SHOT| PendingIntent.FLAG_MUTABLE);
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
         builder.setSmallIcon(R.drawable.ic_launcher_background);
         builder.setContentTitle(u.getNombre() + " esta disponible");
         builder.setGroup(CHANNEL_ID);
         builder.setColor(Color.BLUE);
         builder.setContentIntent(pendingIntent);
-        builder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        builder.setVibrate(new long[]{1000, 1000});
         builder.setDefaults(Notification.DEFAULT_SOUND);
         builder.setAutoCancel(true);
         NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        nm.notify(Integer.parseInt(u.getNumerodeidentificacion()), builder.build());
+       // nm.notify(Integer.parseInt(u.getNumerodeidentificacion()), builder.build());
+        nm.notify(1, builder.build());*/
     }
 
 
@@ -693,17 +701,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onPause() {
         super.onPause();
-        //stopLocationUpdates();
+        stopLocationUpdates();
     }
 
     @Override
     public void onRestart() {
         super.onRestart();
+
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        stopLocationUpdates();
     }
 
     @Override
@@ -715,6 +725,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onStop() {
         super.onStop();
+        stopLocationUpdates();
     }
 
 }

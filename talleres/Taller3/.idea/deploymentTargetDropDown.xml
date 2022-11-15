@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="deploymentTargetDropDown">
-<<<<<<< refs/remotes/origin/master
-=======
-    <targetSelectedWithDropDown>
+    <runningDeviceTargetSelectedWithDropDown>
       <Target>
-        <type value="QUICK_BOOT_TARGET" />
+        <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
-            <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\juanp\.android\avd\S20_API_31.avd" />
+            <type value="SERIAL_NUMBER" />
+            <value value="192.168.1.149:5555" />
           </Key>
         </deviceKey>
       </Target>
-    </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-11-08T20:20:37.622859400Z" />
-    <multipleDevicesSelectedInDropDown value="true" />
+    </runningDeviceTargetSelectedWithDropDown>
+    <timeTargetWasSelectedWithDropDown value="2022-11-15T17:32:49.370819600Z" />
     <runningDeviceTargetsSelectedWithDialog>
       <Target>
         <type value="RUNNING_DEVICE_TARGET" />
         <deviceKey>
           <Key>
             <type value="SERIAL_NUMBER" />
-            <value value="RF8N31BXX5K" />
+            <value value="192.168.1.149:5555" />
           </Key>
         </deviceKey>
       </Target>
@@ -36,7 +33,6 @@
         </deviceKey>
       </Target>
     </runningDeviceTargetsSelectedWithDialog>
->>>>>>> notificaciones hecho
     <targetsSelectedWithDialog>
       <Target>
         <type value="QUICK_BOOT_TARGET" />
